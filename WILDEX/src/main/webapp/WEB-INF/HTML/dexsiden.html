@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wildex</title>
+<link rel="stylesheet" href="../../CSS/style.css">
+</head>
+<body>
+<header class="header">
+
+  <div class="logo-section">
+    <img class="logo" src="../../Images/Logot.png" alt="WILDEX logo">
+    <span class="title">WildDex</span>
+  </div>
+
+ <nav class="navigation">
+    <a href="forside.html">Home</a>
+    <a href="dexsiden.html">Dex</a>
+    <a href="learnmore.html">Learn More</a>
+    <a href="Progress.html">Progress</a>
+  </nav>
+
+</header>
+
+
+<h1>Log the animals, that you have seen on your adventures!</h1>
+
+<div class="tracker-wrapper">
+  <div id="tracker">Du har set 0 ud af 0 dyr (0%)</div>
+
+  <div class="progress-bar">
+    <div id="progress-fill"></div>
+  </div>
+</div>
+
+<!-- Start Grønland -->
+
+<!-- Grønland -->
+<section class="region">
+  <h1 class="region-title">
+    <img src="../../Images/Grønland.png" class="globe" alt="Greenland">
+    <span class="region-label">Greenland ▼</span>
+  </h1>
+
+  <div class="region-content">
+
+    <!-- Pattedyr -->
+    <section class="category">
+      <h2 class="category-title">Pattedyr</h2>
+      <div class="animals" id="pattedyr-list"></div>
+    </section>
+
+    <!-- Fugle -->
+    <section class="category">
+      <h2 class="category-title">Birds</h2>
+      <div class="animals" id="fugle-list"></div>
+    </section>
+
+    <!-- Fisk -->
+    <section class="category">
+      <h2 class="category-title">Fisk</h2>
+      <div class="animals" id="fisk-list"></div>
+    </section>
+  </div>
+</section>
+
+
+
+<!-- Danmark -->
+<section class="region">
+
+  <h1 class="region-title">
+    <img src="../../Images/Danmark.png" class="globe">
+    <span class="region-label">Denmark ▼</span>
+  </h1>
+
+  <div class="region-content">
+
+    <!-- Pattedyr -->
+    <section class="category">
+      <h2 class="category-title">Pattedyr</h2>
+
+      <div class="animals">
+        <div class="animal">
+          <p>Fox</p>
+          <button>Set</button>
+        </div>
+
+        <div class="animal">
+          <p>Wolf</p>
+          <button>Set</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fugle -->
+    <section class="category">
+      <h2 class="category-title">Birds</h2>
+
+      <div class="animals">
+        <div class="animal">
+          <p>Knopsvane</p>
+          <button>Set</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fisk -->
+    <section class="category">
+      <h2 class="category-title">Fish</h2>
+
+      <div class="animals">
+        <div class="animal">
+          <p>Hornfish</p>
+          <button>Set</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</section>
+
+<!-- Slut Danmark-->
+
+
+<script src="../../JS/function.js"></script>
+</body>
+
+</html>
