@@ -1,0 +1,447 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+:root {
+  --primary: #1E3A5F;
+  --secondary: #6FA3A9;
+  --accent: #E8F1F2;
+  --dark: #0F1C2E;
+  --card: #1c2530;
+  --highlight: #C7D9DD;
+  --button: #6FA3A9;
+  --button-hover: #8bb9be;
+  --text-light: #ffffff;
+  --text-dark: #243746;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(to bottom, #0F1C2E, #1E3A5F);
+  color: var(--text-light);
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--text-light);
+}
+
+p {
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/* --- INSTAGRAM GRID --- */
+
+.instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  justify-content: center;
+  gap: 12px;
+}
+
+.instagram-grid img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.hero {
+  padding: 80px 20px 60px;
+}
+
+.hero h1 {
+  font-size: 52px;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 22px;
+  max-width: 760px;
+  margin: 0 auto 30px;
+  color: #e8eef7;
+}
+
+.main-btn {
+  display: inline-block;
+  padding: 14px 22px;
+  background: #8ef6ff;
+  color: #08111f;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+.regions,
+.instagram-section {
+  padding: 50px 20px;
+}
+
+.region-card {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 18px 28px;
+  background: #1c2538;
+  border: 2px solid #6fa3ff;
+  border-radius: 16px;
+  font-weight: 700;
+}
+
+.instagram-section h2 {
+  margin-bottom: 10px;
+}
+
+.section-text {
+  color: #c8d4e5;
+  margin-bottom: 28px;
+}
+
+.instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(180px, 220px));
+  justify-content: center;
+  gap: 20px;
+}
+
+.instagram-grid img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.instagram-btn {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 12px 20px;
+  background: transparent;
+  color: #8ef6ff;
+  border: 2px solid #8ef6ff;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+/* --- BUTTONS --- */
+
+button {
+  background: var(--button);
+  color: var(--dark);
+  border: none;
+  padding: 8px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  background: var(--button-hover);
+  transform: translateY(-1px);
+}
+
+.learn-more-btn {
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: var(--button);
+  color: var(--dark);
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.learn-more-btn:hover {
+  background-color: var(--button-hover);
+  transform: translateY(-1px);
+}
+
+#greenland-title {
+  color: white;
+}
+
+/* --- HEADER --- */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(15, 28, 46, 0.95);
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.35);
+  backdrop-filter: blur(6px);
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 50px;
+  image-rendering: pixelated;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  font-family: 'Playfair Display', serif;
+}
+
+.navigation {
+  display: flex;
+  gap: 15px;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 10px;
+  transition: 0.2s ease;
+}
+
+.navigation a:hover {
+  background: var(--secondary);
+  color: var(--dark);
+}
+
+/* --- ANIMALS GREENLAND --- */
+
+.region-title {
+  display: block;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-family: 'Playfair Display', serif;
+  transition: 0.2s ease;
+}
+
+.region-title:hover {
+  color: var(--secondary);
+}
+
+.globe {
+  width: 150px;
+  image-rendering: pixelated;
+}
+
+.animals {
+  max-height: 400px;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: rgba(28, 37, 48, 0.95);
+  padding: 15px;
+  margin: 10px auto;
+  width: 350px;
+  border-radius: 18px;
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.3);
+}
+
+.animals {
+  display: none;
+}
+
+.animal {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255,255,255,0.04);
+  padding: 12px;
+  border-radius: 14px;
+  transition: 0.2s ease;
+}
+
+.animal:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.08);
+}
+
+.animal img {
+  width: 80px;
+  image-rendering: pixelated;
+  transition: transform 0.2s ease;
+  border-radius: 10px;
+}
+
+.animal img:hover {
+  transform: scale(1.15);
+}
+
+.animal p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.animal button {
+  margin-left: auto;
+}
+
+/* --- LEARN MORE SECTIONS --- */
+
+.mereviden {
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 25px;
+  background: var(--accent);
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  border-left: 6px solid var(--secondary);
+  text-align: left;
+}
+
+.mereviden h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.mereviden p {
+  line-height: 1.8;
+  font-size: 17px;
+  color: var(--text-dark);
+}
+
+/* --- SEEN STATE --- */
+
+.animal.seen {
+  opacity: 0.65;
+  filter: grayscale(70%);
+}
+
+.animal.seen button {
+  background-color: #4f8a5b;
+  color: white;
+}
+
+/* --- TRACKER --- */
+
+.tracker-wrapper {
+  max-width: 500px;
+  margin: 20px auto;
+  text-align: center;
+  background: rgba(255,255,255,0.06);
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+#tracker {
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: white;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, var(--secondary), var(--highlight));
+  transition: width 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .navigation {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .title {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 22px;
+    padding: 0 10px;
+  }
+
+  h2 {
+    font-size: 18px;
+    padding: 0 10px;
+  }
+
+  .region-title {
+    font-size: 12px;
+    width: 90%;
+    box-sizing: border-box;
+  }
+
+  .animals {
+    width: 92%;
+    max-height: none;
+  }
+
+  .animal {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .animal img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .animal button {
+    margin-left: 0;
+  }
+
+  .mereviden {
+    width: 92%;
+    margin: 30px auto;
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .mereviden h2 {
+    font-size: 18px;
+  }
+
+  .mereviden p {
+    font-size: 15px;
+  }
+
+  .tracker-wrapper {
+    width: 92%;
+    box-sizing: border-box;
+  }
+}
