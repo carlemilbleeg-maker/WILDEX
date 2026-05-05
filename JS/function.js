@@ -1,345 +1,170 @@
-const regions = document.querySelectorAll(".region");
+const STORAGE_KEYS = {
+  seenAnimals: "seenAnimals",
+  sightings: "wilddexSightings",
+  mapPins: "wilddexMapPins"
+};
 
-regions.forEach(function(region){
-
-  const title = region.querySelector(".region-title");
-  const content = region.querySelector(".region-content");
-  const label = region.querySelector(".region-label");
-
-  content.style.display = "none";
-
-  title.addEventListener("click", function(){
-
-    if(content.style.display === "block"){
-      content.style.display = "none";
-      label.textContent = label.textContent.replace("▲", "▼");
-    } else {
-      content.style.display = "block";
-      label.textContent = label.textContent.replace("▼", "▲");
-    }
-
-  });
-
-});
-
-const categories = document.querySelectorAll(".category");
-
-categories.forEach(function(category) {
-  const title = category.querySelector(".category-title");
-  const content = category.querySelector(".animals");
-
-  content.style.display = "none";
-
-  title.addEventListener("click", function() {
-    if (content.style.display === "flex") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "flex";
-    }
-  });
-});
-// Kode der omhandler åben/lukke af kategorierne GRØNLAND SLUT
-
-
-// Kode der omhandler åben/lukke af kategorierne DANMARK
-
-
-
-// Kode til dyr
-const animals = [
- {
-	name: "Isbjørn",
-	image: "Images/animals/isbjornen.png",
-	category: "pattedyr",
-	description: "Top rovdyr i Arktis",
-	region: "Greenland",
-	id: "isbjørn",
-	rarity: "rare",
-	link: "learnmore.html"
-	 },
-  {
-    name: "Moskusokse",
-    image: "Images/animals/moskusokse.png",
-    category: "pattedyr",
-	description: "Vejer 180-400 kg.",
-	region: "Greenland",
-	id: "moskusokse",
-	rarity: "rare",
-    link: "learnmore.html"
-  },
-  {
-    name: "Polarræv",
-    image: "Images/animals/polarrav.png",
-    category: "pattedyr",
-	description: "To slags ræv. Blåræv og hvidræv",
-	region: "Greenland",
-	id: "polarræv",
-	rarity: "rare",
-    link: "learnmore.html"
-  },
-  {
-	name: "Rensdyr",
-	image: "Images/animals/rensdyr.png",
-	category: "pattedyr",
-	description: "Hanner vejer op til 300 kg. Renen er den eneste hjort, hvor begge køn bærer gevir",
-	region: "Greenland",
-	id: "rensdyr",
-	rarity: "uncommon",
-	link: "learnmore.html"
-  },
-  {
-	name: "Polarulv",
-	image: "Images/animals/polarulv.png",
-	category: "pattedyr",
-	description: "Er en underart af grå ulv, som kun findes i Grønland og på Ellesmere Island",
-	region: "Greenland",
-	id: "polarulv",
-	rarity: "rare",
-	link: "learnmore.html"
-  },
-  {
-   name: "Sæl (Ringsæl)",
-   image: "Images/animals/ringsael.png",
-   category: "pattedyr",
-   description: "Den mest almindelige sæl i Grønland",
-   region: "Greenland",
-   id: "ringsæl",
-   rarity: "uncommon",
-   link: "learnmore.html"
-   },
-   {
-   name: "Hvalros",
-   image: "Images/animals/hvalros.png",
-   category: "pattedyr",
-   description: "Kendt for sine lange stødtænder",
-   region: "Greenland",
-   id: "hvalros",
-   rarity: "rare",
-   link: "learnmore.html"
-   },
-   {
-   name: "Narhval",
-   image: "Images/animals/narhval.png",
-   category: "pattedyr",
-   description: "Har en lang spiralformet tand",
-   region: "Greenland",
-   id: "narhval",
-   rarity: "uncommon",
-   link: "learnmore.html"
-    },
-    {
-   name: "Grønlandshval",
-   image: "Images/animals/gronlandshval.png",
-   category: "pattedyr",
-   description: "Kan blive over 200 år gammel",
-   region: "Greenland",
-   id: "grønlandshval",
-   rarity: "uncommon",
-   link: "learnmore.html"
-    },
-
-  // Fugle
-  {
-    name: "Jagtfalk",
-    image: "Images/animals/Jagtfalken.png",
-    category: "birds",
-	description: "Jagtfalken er en frygtindgydende jæger",
-	region: "Greenland",
-	id: "jagtfalk",
-	rarity: "uncommon",
-    link: "learnmore.html"
-  },
-  {
-    name: "Havørn",
-    image: "Images/animals/Havorn.png",
-    category: "birds",
-	description: "Har et vingefang på 2,5 meter, og er Grønlands største fugl",
-	region: "Greenland",
-	id: "havørn",
-	rarity: "common",
-    link: "learnmore.html"
-  },
-  {
-	name: "Sneugle / Uppik",
-	image: "Images/animals/Sneugle.png",
-	category: "birds",
-	description: "Sneuglen kan svæve helt lydløst over sneen",
-	region: "Greenland",
-	id: "sneugle",
-	rarity: "rare",
-	link: "learnmore.html"
-  }, 
-  {
-	name: "Vandrefalk / Kiinaaleeraq",
-	image: "Images/animals/vandrefalk.png",
-	category: "birds",
-	description: "Berømt for at være verdens hurtigste dyr. Der er målt en topfart på 350 km/t.",
-	region: "Greenland",
-	id: "vandrefalk",
-	rarity: "rare",
-	link: "learnmore.html"
-  },
-  {
-    name: "Fjeldrype / Aqisseq",
-  	image: "Images/animals/Fjeldrype.png",
-  	category: "birds",
-  	description: "Grønlands eneste hønsefugl",
-  	region: "Greenland",
-  	id: "fjeldrype",
-	rarity: "common",
-  	link: "learnmore.html"
-  },
-  {
-	name: "Ravn / Tulugaq",
-	image: "Images/animals/ravn.png",
-	category: "birds",
-	description: "Ravnen er verdens største kragefugl",
-	region: "Greenland",
-	id: "ravn",
-	rarity: "common",
-	link: "learnmore.html"
-  },
-  {
-    name: "Kongeedderfugl / Miteq Sioraki",
-  	image: "Images/animals/kongeedderfugl.png",
-  	category: "birds",
-  	description: "Hannen har en farvestrålende yngledragt",
-	regoin: "Greenland",
-  	id: "kongeedderfugl",
-	rarity: "uncommon",
-	link: "learnmore.html"
-  },
-  {
-      name: "Lomvie / Appa",
-      image: "Images/animals/Lomvie.png",
-      category: "birds",
-      description: "Lever i store kolonier på fuglefjelde",
-      region: "Greenland",
-      id: "lomvie",
-	  rarity: "common",
-      link: "learnmore.html"
-    },
-    {
-      name: "Tejst",
-      image: "Images/animals/Tejst.png",
-      category: "birds",
-      description: "Sort fugl med hvide vingefelter",
-      region: "Greenland",
-      id: "tejst",
-	  rarity: "common",
-      link: "learnmore.html"
-    },
-    {
-      name: "Snespurv",
-      image: "Images/animals/Snespurv.png",
-      category: "birds",
-      description: "En af de nordligst ynglende småfugle",
-      region: "Greenland",
-      id: "snespurv",
-	  rarity: "common",
-      link: "learnmore.html"
-    },
-  // fisk
-  {
-    name: "Torsk / Saarullik",
-    image: "Images/animals/Torsk.png",
-    category: "fish",
-	description: "Kan veje op til 15-30 kg. ",
-	region: "Greenland",
-	id: "torsk",
-	rarity: "common",
-    link: "learnmore.html"
-  },
-  {
-	name: "Stor rødfisk / Suluppaagaq",
-	image: "Images/animals/Rodfisk.png",
-	category: "fish",
-	description: "Stor mund med underbid og store øjne. Har 5 ugiftet pigge",
-	region: "Greenland",
-	id: "rødfisk",
-	rarity: "common",
-	link: "learnmore.html"
-  },
-  {
-     name: "Hellefisk / Qaleralik",
-     image: "Images/animals/Hellefisk.png",
-     category: "fish",
-     description: "En vigtig eksportfisk fra Grønland",
-     region: "Greenland",
-     id: "hellefisk",
-	 rarity: "uncommon",
-     link: "learnmore.html"
-   },
-   {
-     name: "Laks",
-     image: "Images/animals/Laks.png",
-     category: "fish",
-     description: "Vandrer mellem hav og ferskvand",
-     region: "Greenland",
-     id: "laks",
-	 rarity: "uncommon",
-     link: "learnmore.html"
-   },
-    {
-	name: "Lion",
-	image: "Images/animals/Lion.png",
-	category: "pattedyr",
-	description: "Største kødæder",
-	region: "Africa",
-	id: "Lion",
-	rarity:"uncommon",
-	link: "learnmore.html"
-   }
-   
+const regionConfig = [
+  { key: "Greenland", label: "Greenland" },
+  { key: "Denmark", label: "Denmark" },
+  { key: "Africa", label: "Africa" }
 ];
 
-let seenAnimals = JSON.parse(localStorage.getItem("seenAnimals")) || [];
+const categoryConfig = [
+  { key: "pattedyr", containerName: "pattedyr" },
+  { key: "birds", containerName: "fugle" },
+  { key: "fish", containerName: "fisk" }
+];
+
+let seenAnimals = getStoredArray(STORAGE_KEYS.seenAnimals);
+let sightings = getStoredObject(STORAGE_KEYS.sightings);
+let mapPins = getStoredArray(STORAGE_KEYS.mapPins);
+let selectedMapAnimalId = null;
+let activeMapRegion = "Greenland";
+
+function getStoredArray(key) {
+  return JSON.parse(localStorage.getItem(key)) || [];
+}
+
+function getStoredObject(key) {
+  return JSON.parse(localStorage.getItem(key)) || {};
+}
+
+function saveSeenAnimals() {
+  localStorage.setItem(STORAGE_KEYS.seenAnimals, JSON.stringify(seenAnimals));
+}
+
+function saveSightings() {
+  localStorage.setItem(STORAGE_KEYS.sightings, JSON.stringify(sightings));
+}
+
+function saveMapPins() {
+  localStorage.setItem(STORAGE_KEYS.mapPins, JSON.stringify(mapPins));
+}
+
+function getAnimalSightings(animalId) {
+  return sightings[animalId] || [];
+}
+
+function getSeenAnimalsByRegion(region) {
+  return animals.filter(animal =>
+    animal.region === region && seenAnimals.includes(animal.id)
+  );
+}
+
+function toggleSeen(animalId) {
+  if (seenAnimals.includes(animalId)) {
+    seenAnimals = seenAnimals.filter(id => id !== animalId);
+  } else {
+    seenAnimals.push(animalId);
+  }
+
+  saveSeenAnimals();
+  renderPage();
+}
+
+function addSighting(animalId, location, date, time) {
+  const newSighting = {
+    id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(),
+    animalId,
+    location,
+    date,
+    time,
+    createdAt: new Date().toISOString()
+  };
+
+  if (!sightings[animalId]) {
+    sightings[animalId] = [];
+  }
+
+  sightings[animalId].push(newSighting);
+
+  if (!seenAnimals.includes(animalId)) {
+    seenAnimals.push(animalId);
+  }
+
+  saveSightings();
+  saveSeenAnimals();
+  renderPage();
+}
 
 function createAnimalCard(animal) {
   const isSeen = seenAnimals.includes(animal.id);
+  const animalSightings = getAnimalSightings(animal.id);
+  const latestSightings = animalSightings.slice(-2).reverse();
 
   return `
-    <div class="animal ${isSeen ? "seen" : ""}">
+    <article class="animal ${isSeen ? "seen" : ""} ${animal.rarity === "rare" ? "rare-animal" : ""}">
+      ${animal.rarity === "rare" ? `<span class="rarity-badge">Rare</span>` : ""}
+
       <img src="${animal.image}" alt="${animal.name}">
-      <p>${animal.name}</p>
-      <button onclick="toggleSeen('${animal.id}')">
-        ${isSeen ? "Unsee" : "Set"}
-      </button>
-      <a href="${animal.link}#${animal.id}" class="learn-more-btn">Learn more!</a>
-    </div>
+
+      <div class="animal-info">
+        <h3>${animal.name}</h3>
+        <p>${animal.description}</p>
+        <span class="animal-meta">${animal.region} · ${animal.category}</span>
+      </div>
+
+      <div class="animal-actions">
+        <button type="button" data-action="toggle-seen" data-id="${animal.id}">
+          ${isSeen ? "Unsee" : "Set"}
+        </button>
+
+        <button type="button" data-action="select-map-animal" data-id="${animal.id}">
+          Pin on map
+        </button>
+
+        <a href="${animal.link}#${animal.id}" class="learn-more-btn">Learn more</a>
+      </div>
+
+      <form class="sighting-form" data-id="${animal.id}">
+        <input type="text" name="location" placeholder="Location" required>
+        <input type="date" name="date" required>
+        <input type="time" name="time" required>
+        <button type="submit">Log sighting</button>
+      </form>
+
+      <div class="sightings-list">
+        <strong>${animalSightings.length} sightings</strong>
+        ${latestSightings.map(sighting => `
+          <p>${sighting.location} · ${sighting.date} ${sighting.time}</p>
+        `).join("")}
+      </div>
+    </article>
   `;
-}
-
-function toggleSeen(id) {
-  if (seenAnimals.includes(id)) {
-    seenAnimals = seenAnimals.filter(animalId => animalId !== id);
-  } else {
-    seenAnimals.push(id);
-  }
-
-  localStorage.setItem("seenAnimals", JSON.stringify(seenAnimals));
-  renderAllAnimals();
 }
 
 function renderCategory(region, category, containerId) {
   const container = document.getElementById(containerId);
 
-  if (!container) {
-    console.log("Container ikke fundet:", containerId);
-    return;
-  }
+  if (!container) return;
 
   const filteredAnimals = animals.filter(animal =>
     animal.region === region && animal.category === category
   );
 
-  container.innerHTML = filteredAnimals.map(animal => createAnimalCard(animal)).join("");
+  container.innerHTML = filteredAnimals.map(createAnimalCard).join("");
+}
+
+function renderAllAnimals() {
+  regionConfig.forEach(region => {
+    categoryConfig.forEach(category => {
+      renderCategory(
+        region.key,
+        category.key,
+        `${region.key.toLowerCase()}-${category.containerName}-list`
+      );
+    });
+  });
+
+  updateTracker();
+  updateRegionProgress();
 }
 
 function updateTracker() {
   const totalAnimals = animals.length;
   const seenCount = seenAnimals.length;
-  const percent = Math.round((seenCount / totalAnimals) * 100);
+  const percent = totalAnimals === 0 ? 0 : Math.round((seenCount / totalAnimals) * 100);
 
   const tracker = document.getElementById("tracker");
   const progressFill = document.getElementById("progress-fill");
@@ -353,54 +178,329 @@ function updateTracker() {
   }
 }
 
-function renderAllAnimals() {
-  renderCategory("Greenland", "pattedyr", "greenland-pattedyr-list");
-  renderCategory("Greenland", "birds", "greenland-fugle-list");
-  renderCategory("Greenland", "fish", "greenland-fisk-list");
+function updateRegionProgress() {
+  const container = document.getElementById("region-progress");
 
-  renderCategory("Africa", "pattedyr", "africa-pattedyr-list");
-  renderCategory("Africa", "birds", "africa-fugle-list");
-  renderCategory("Africa", "fish", "africa-fisk-list");
+  if (!container) return;
 
-  renderCategory("Denmark", "pattedyr", "denmark-pattedyr-list");
-  renderCategory("Denmark", "birds", "denmark-fugle-list");
-  renderCategory("Denmark", "fish", "denmark-fisk-list");
+  container.innerHTML = regionConfig.map(region => {
+    const total = animals.filter(animal => animal.region === region.key).length;
+    const seen = getSeenAnimalsByRegion(region.key).length;
+    const percent = total === 0 ? 0 : Math.round((seen / total) * 100);
 
-  updateTracker();
+    return `
+      <div class="region-progress-card">
+        <div>
+          <strong>${region.label}</strong>
+          <span>${seen}/${total} animals</span>
+        </div>
+        <div class="mini-progress">
+          <div style="width: ${percent}%"></div>
+        </div>
+      </div>
+    `;
+  }).join("");
 }
 
 function createPokedexCard(animal) {
   const isSeen = seenAnimals.includes(animal.id);
 
   return `
-    <div class="pokedex-card ${isSeen ? "seen" : "unseen"}">
+    <article class="pokedex-card ${isSeen ? "seen" : "unseen"} ${animal.rarity === "rare" ? "rare-animal" : ""}">
       <a href="${animal.link}#${animal.id}">
-        <img src="${animal.image}" alt="${isSeen ? animal.name : "Ukendt dyr"}">
+        <img src="${animal.image}" alt="${isSeen ? animal.name : "Unknown animal"}">
         <p>${isSeen ? animal.name : "???"}</p>
       </a>
-    </div>
+    </article>
   `;
 }
 
 function renderPokedex() {
   const container = document.getElementById("pokedex-container");
 
-  if (!container) {
-    console.log("Pokedex-container ikke fundet");
-    return;
-  }
+  if (!container) return;
 
   container.innerHTML = animals.map(createPokedexCard).join("");
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  if (document.getElementById("greenland-pattedyr-list") ||
-      document.getElementById("africa-pattedyr-list") ||
-      document.getElementById("denmark-pattedyr-list")) {
+function initAccordions() {
+  document.querySelectorAll(".region").forEach(region => {
+    const title = region.querySelector(".region-title");
+    const content = region.querySelector(".region-content");
+    const label = region.querySelector(".region-label");
+
+    if (!title || !content || !label) return;
+
+    content.style.display = "none";
+
+    title.addEventListener("click", () => {
+      const isOpen = content.style.display === "block";
+
+      content.style.display = isOpen ? "none" : "block";
+      label.textContent = isOpen
+        ? label.textContent.replace("▲", "▼")
+        : label.textContent.replace("▼", "▲");
+    });
+  });
+
+  document.querySelectorAll(".category").forEach(category => {
+    const title = category.querySelector(".category-title");
+    const content = category.querySelector(".animals");
+
+    if (!title || !content) return;
+
+    content.style.display = "none";
+
+    title.addEventListener("click", () => {
+      const isOpen = content.style.display === "flex";
+      content.style.display = isOpen ? "none" : "flex";
+    });
+  });
+}
+
+function initLearnMoreRegionMenu() {
+  const container = document.getElementById("learn-region-menu");
+
+  if (!container || typeof animals === "undefined") return;
+
+  container.innerHTML = regionConfig.map(region => {
+    const regionAnimals = animals.filter(animal => animal.region === region.key);
+
+    return `
+      <div class="learn-region-group">
+        <button type="button" class="learn-region-toggle">
+          <span>${region.label}</span>
+          <span>▼</span>
+        </button>
+
+        <div class="learn-animal-menu">
+          ${regionAnimals.map(animal => `
+            <a href="#${animal.id}" class="learn-animal-link" data-learn-animal="${animal.id}">
+              ${animal.name}
+            </a>
+          `).join("")}
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  container.addEventListener("click", event => {
+    const toggle = event.target.closest(".learn-region-toggle");
+    const animalLink = event.target.closest("[data-learn-animal]");
+
+    if (toggle) {
+      const group = toggle.closest(".learn-region-group");
+      group.classList.toggle("open");
+
+      const arrow = toggle.querySelector("span:last-child");
+      arrow.textContent = group.classList.contains("open") ? "▲" : "▼";
+    }
+
+    if (animalLink) {
+      openLearnMoreAnimal(animalLink.dataset.learnAnimal);
+    }
+  });
+
+  document.querySelectorAll(".mereviden").forEach(section => {
+    const title = section.querySelector("h2");
+
+    if (!title) return;
+
+    title.addEventListener("click", () => {
+      section.classList.toggle("open");
+      section.classList.remove("highlighted");
+    });
+  });
+
+  openLearnMoreAnimalFromHash();
+}
+
+function closeAllLearnMoreAnimals() {
+  document.querySelectorAll(".mereviden").forEach(section => {
+    section.classList.remove("open", "highlighted");
+  });
+}
+
+function openLearnMoreAnimal(animalId) {
+  const section = document.getElementById(animalId);
+
+  if (!section) return;
+
+  closeAllLearnMoreAnimals();
+  section.classList.add("open", "highlighted");
+  section.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function openLearnMoreAnimalFromHash() {
+  const animalId = decodeURIComponent(window.location.hash.replace("#", ""));
+
+  if (animalId) {
+    openLearnMoreAnimal(animalId);
+  }
+}
+
+function initMap() {
+  const map = document.getElementById("wild-map");
+  const tabs = document.getElementById("map-region-tabs");
+
+  if (!map || !tabs) return;
+
+  tabs.innerHTML = regionConfig.map(region => `
+    <button type="button" data-map-region="${region.key}" class="${region.key === activeMapRegion ? "active" : ""}">
+      ${region.label}
+    </button>
+  `).join("");
+
+  tabs.addEventListener("click", event => {
+    const button = event.target.closest("[data-map-region]");
+    if (!button) return;
+
+    activeMapRegion = button.dataset.mapRegion;
+
+    tabs.querySelectorAll("button").forEach(tab => tab.classList.remove("active"));
+    button.classList.add("active");
+
+    renderMapPins();
+  });
+
+  map.addEventListener("click", event => {
+    if (!selectedMapAnimalId) return;
+
+    const animal = animals.find(item => item.id === selectedMapAnimalId);
+    if (!animal) return;
+
+    const rect = map.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+    mapPins.push({
+      id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(),
+      animalId: animal.id,
+      region: activeMapRegion,
+      x,
+      y,
+      createdAt: new Date().toISOString()
+    });
+
+    if (!seenAnimals.includes(animal.id)) {
+      seenAnimals.push(animal.id);
+      saveSeenAnimals();
+    }
+
+    saveMapPins();
+    renderPage();
+  });
+
+  renderMapPins();
+}
+
+function selectAnimalForMap(animalId) {
+  const animal = animals.find(item => item.id === animalId);
+  const selectedText = document.getElementById("map-selected-animal");
+  const mapSection = document.querySelector(".map-section");
+  const tabs = document.getElementById("map-region-tabs");
+
+  if (!animal || !selectedText) return;
+
+  selectedMapAnimalId = animal.id;
+  activeMapRegion = animal.region;
+
+  selectedText.textContent = `Selected: ${animal.name}`;
+
+  if (tabs) {
+    tabs.querySelectorAll("button").forEach(tab => {
+      tab.classList.toggle("active", tab.dataset.mapRegion === activeMapRegion);
+    });
+  }
+
+  if (mapSection) {
+    mapSection.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  renderMapPins();
+}
+
+function renderMapPins() {
+  const map = document.getElementById("wild-map");
+
+  if (!map) return;
+
+  const emptyText = map.querySelector(".map-empty-text");
+  map.querySelectorAll(".map-pin").forEach(pin => pin.remove());
+
+  const visiblePins = mapPins.filter(pin => pin.region === activeMapRegion);
+
+  if (emptyText) {
+    emptyText.style.display = visiblePins.length ? "none" : "grid";
+  }
+
+  visiblePins.forEach(pin => {
+    const animal = animals.find(item => item.id === pin.animalId);
+    if (!animal) return;
+
+    const pinElement = document.createElement("button");
+    pinElement.type = "button";
+    pinElement.className = "map-pin";
+    pinElement.style.left = `${pin.x}%`;
+    pinElement.style.top = `${pin.y}%`;
+    pinElement.textContent = animal.name.charAt(0).toUpperCase();
+    pinElement.title = animal.name;
+
+    map.appendChild(pinElement);
+  });
+}
+
+function initEvents() {
+  document.addEventListener("click", event => {
+    const seenButton = event.target.closest("[data-action='toggle-seen']");
+    const mapButton = event.target.closest("[data-action='select-map-animal']");
+
+    if (seenButton) {
+      toggleSeen(seenButton.dataset.id);
+    }
+
+    if (mapButton) {
+      selectAnimalForMap(mapButton.dataset.id);
+    }
+  });
+
+  document.addEventListener("submit", event => {
+    const form = event.target.closest(".sighting-form");
+    if (!form) return;
+
+    event.preventDefault();
+
+    const formData = new FormData(form);
+
+    addSighting(
+      form.dataset.id,
+      formData.get("location"),
+      formData.get("date"),
+      formData.get("time")
+    );
+  });
+}
+
+function renderPage() {
+  if (document.querySelector(".animals")) {
     renderAllAnimals();
   }
 
   if (document.getElementById("pokedex-container")) {
     renderPokedex();
   }
+
+  if (document.getElementById("wild-map")) {
+    renderMapPins();
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initAccordions();
+  initEvents();
+  initMap();
+  initLearnMoreRegionMenu();
+  renderPage();
+
+  window.addEventListener("hashchange", openLearnMoreAnimalFromHash);
 });
