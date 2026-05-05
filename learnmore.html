@@ -4,19 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wildex</title>
-<link rel="stylesheet" href="CSS/style.css">
+<link rel="stylesheet" href="../../CSS/style.css">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat&family=Caveat&display=swap" rel="stylesheet">
 </head>
 <body>
 <header class="header">
 
   <div class="logo-section">
-    <img class="logo" src="Images/Logot.png" alt="WILDEX logo">
+    <img class="logo" src="../../Images/Logot.png" alt="WILDEX logo">
     <span class="title">WildDex</span>
   </div>
 
   <nav class="navigation">
-    <a href="index.html">Home</a>
+    <a href="forside.html">Home</a>
     <a href="dexsiden.html">Dex</a>
     <a href="learnmore.html">Learn More</a>
     <a href="Progress.html">Progress</a>
@@ -24,9 +24,19 @@
 
 
 </header>
-
+<body class="learn-more-page">
 <h1>Learn more about the animals, that you meet on your journey!</h1>
+<div class="learn-controls">
+  <input type="search" id="animal-search" placeholder="Search animal...">
+  <button type="button" id="collapse-all">Close all</button>
+</div>
 
+<section class="learn-region-panel">
+  <h2>Find animals by region</h2>
+  <div id="learn-region-menu"></div>
+</section>
+
+<h1>Greenland</h1>
 <section class="mereviden" id="isbjørn">
 <h2>Isbjørn</h2>
 <p>Isbjørn, eller også kaldet "Nanoq" på Grønlandsk, er et af Grønlands mest ikonsike dyr og er verdens største bjørn.
@@ -205,6 +215,15 @@ Laksen er kendt for sin lange vandring mellem ferskvand og hav.
 </p>
 </section>
 
+<section class="mereviden" id="havkat">
+<h2>Havkat</h2>
+<p>
+Havkatten er en kraftig fisk med stærke tænder.
+<strong>Udbredelse:</strong>Findes i kolde havområder omkring Grønland.
+<strong>Levevis:</strong>Bruger sine tænder til at knuse skaller fra muslinger og søpindsvin.
+</p>
+</section>
+
 <h1>Africa</h1>
 <section class="mereviden" id="Lion">
 <h2>Lion</h2>
@@ -214,6 +233,54 @@ Et majestætisk rovdyr, kendt som "Kongen af savannen". Hanløverne kan veje op 
 <strong>Levevis:</strong>Er et socialt dyr, som ofte lever i flok.
 </section>
 
-<script src="JS/function.js"></script>
+
+<script>
+  const sections = document.querySelectorAll(".mereviden");
+  const searchInput = document.getElementById("animal-search");
+  const collapseButton = document.getElementById("collapse-all");
+
+  function closeAllAnimals() {
+    sections.forEach(section => {
+      section.classList.remove("open", "highlighted");
+    });
+  }
+
+  function openAnimalFromHash() {
+    const id = decodeURIComponent(window.location.hash.replace("#", ""));
+    if (!id) return;
+
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    closeAllAnimals();
+    target.classList.add("open", "highlighted");
+    target.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  sections.forEach(section => {
+    const title = section.querySelector("h2");
+
+    title.addEventListener("click", () => {
+      section.classList.toggle("open");
+      section.classList.remove("highlighted");
+    });
+  });
+
+  searchInput.addEventListener("input", () => {
+    const searchValue = searchInput.value.toLowerCase();
+
+    sections.forEach(section => {
+      const text = section.textContent.toLowerCase();
+      section.style.display = text.includes(searchValue) ? "block" : "none";
+    });
+  });
+
+  collapseButton.addEventListener("click", closeAllAnimals);
+
+  window.addEventListener("hashchange", openAnimalFromHash);
+  openAnimalFromHash();
+</script>
+<script src="../../JS/animals.js"></script>
+<script src="../../JS/function.js"></script>
 </body>
 </html>
