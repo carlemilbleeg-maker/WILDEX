@@ -250,56 +250,152 @@ button:hover {
 }
 
 .animals {
-  max-height: 400px;
-  overflow-x: auto;
-  display: flex;
+  display: none;
   flex-direction: column;
-  gap: 15px;
+  gap: 18px;
   background: rgba(28, 37, 48, 0.95);
-  padding: 15px;
-  margin: 10px auto;
-  width: 350px;
+  padding: 16px;
+  margin: 12px auto 28px;
+  width: min(920px, 92%);
   border-radius: 18px;
   box-shadow: 0px 8px 20px rgba(0,0,0,0.3);
 }
 
-.animals {
-  display: none;
-}
-
 .animal {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: rgba(255,255,255,0.04);
-  padding: 12px;
-  border-radius: 14px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 16px;
+  background: rgba(255,255,255,0.06);
+  padding: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  text-align: left;
   transition: 0.2s ease;
 }
 
 .animal:hover {
   transform: translateY(-2px);
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(111, 163, 169, 0.55);
 }
 
 .animal img {
-  width: 80px;
+  width: 100%;
+  max-width: 110px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
   image-rendering: pixelated;
-  transition: transform 0.2s ease;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.08);
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.animal-info h3 {
+  margin: 0 0 6px;
+  color: white;
+  font-size: 18px;
+}
+
+.animal-info p {
+  margin: 0 0 8px;
+  color: #d9e6ef;
+  font-size: 14px;
+}
+
+.animal-meta {
+  display: inline-block;
+  color: #a8c7ce;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.animal-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.sighting-form {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 150px 120px auto;
+  gap: 8px;
+}
+
+.sighting-form input,
+.sighting-form button {
+  min-height: 40px;
   border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.16);
+  padding: 8px 10px;
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
 }
 
-.animal img:hover {
-  transform: scale(1.15);
+.sighting-form input {
+  background: rgba(255,255,255,0.08);
+  color: white;
 }
 
-.animal p {
-  margin: 0;
-  font-weight: 500;
+.sighting-form input::placeholder {
+  color: #b8c8d3;
 }
 
-.animal button {
-  margin-left: auto;
+.sightings-list {
+  grid-column: 1 / -1;
+  color: #c7d9dd;
+  font-size: 13px;
+}
+
+.sightings-list strong {
+  color: white;
+}
+
+.sightings-list p {
+  margin: 4px 0 0;
+  color: #c7d9dd;
+}
+
+.animal.seen {
+  opacity: 1;
+  filter: none;
+  border-color: #6FA3A9;
+  box-shadow: 0 0 0 1px rgba(111,163,169,0.25), 0 10px 28px rgba(0,0,0,0.2);
+}
+
+.animal.seen::after {
+  content: "Seen";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #4f8a5b;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 8px;
+  border-radius: 999px;
+}
+
+.rare-animal {
+  border-color: rgba(232, 194, 92, 0.75);
+  background: linear-gradient(135deg, rgba(232,194,92,0.18), rgba(255,255,255,0.06));
+}
+
+.rarity-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #e8c25c;
+  color: #1f1805;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 5px 8px;
+  border-radius: 999px;
 }
 
 /* --- LEARN MORE SECTIONS --- */
@@ -330,10 +426,6 @@ button:hover {
 
 /* --- SEEN STATE --- */
 
-.animal.seen {
-  opacity: 0.65;
-  filter: grayscale(70%);
-}
 
 .animal.seen button {
   background-color: #4f8a5b;
@@ -373,6 +465,82 @@ button:hover {
   transition: width 0.3s ease;
 }
 
+.learn-more-page {
+  text-align: left;
+}
+
+.learn-more-page > h1 {
+  text-align: center;
+  max-width: 900px;
+  margin: 40px auto 20px;
+  padding: 0 20px;
+}
+
+.learn-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  max-width: 700px;
+  margin: 0 auto 30px;
+  padding: 0 20px;
+}
+
+.learn-controls input {
+  flex: 1;
+  min-height: 44px;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 12px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.08);
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.learn-controls input::placeholder {
+  color: #b8c8d3;
+}
+
+.mereviden {
+  cursor: pointer;
+}
+
+.mereviden h2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mereviden h2::after {
+  content: "+";
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  color: var(--secondary);
+}
+
+.mereviden p {
+  display: none;
+}
+
+.mereviden.open p {
+  display: block;
+}
+
+.mereviden.open h2::after {
+  content: "−";
+}
+
+.mereviden.highlighted {
+  outline: 3px solid var(--secondary);
+  transform: scale(1.01);
+}
+
+@media (max-width: 768px) {
+  .learn-controls {
+    flex-direction: column;
+  }
+}
+
+
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
@@ -411,20 +579,6 @@ button:hover {
     max-height: none;
   }
 
-  .animal {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .animal img {
-    width: 100px;
-    height: 100px;
-  }
-
-  .animal button {
-    margin-left: 0;
-  }
-
   .mereviden {
     width: 92%;
     margin: 30px auto;
@@ -443,5 +597,191 @@ button:hover {
   .tracker-wrapper {
     width: 92%;
     box-sizing: border-box;
+  }
+
+  .instagram-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .animal {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .animal img {
+    margin: 0 auto;
+  }
+
+  .animal-info {
+    text-align: center;
+  }
+
+  .animal-actions {
+    justify-content: center;
+  }
+
+  .sighting-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+.learn-region-panel,
+.map-section {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 18px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.22);
+}
+
+.learn-region-panel h2,
+.map-section h2 {
+  margin-top: 0;
+}
+
+.learn-region-group {
+  margin-top: 12px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(15, 28, 46, 0.6);
+}
+
+.learn-region-toggle {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(111, 163, 169, 0.18);
+  color: white;
+  border-radius: 0;
+  text-align: left;
+}
+
+.learn-animal-menu {
+  display: none;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  padding: 14px;
+}
+
+.learn-region-group.open .learn-animal-menu {
+  display: grid;
+}
+
+.learn-animal-link {
+  color: white;
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  transition: 0.2s ease;
+}
+
+.learn-animal-link:hover {
+  background: var(--secondary);
+  color: var(--dark);
+}
+
+.map-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.map-header p {
+  margin: 0;
+  color: #c7d9dd;
+}
+
+#map-selected-animal {
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(111, 163, 169, 0.18);
+  color: white;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.map-region-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.map-region-tabs button.active {
+  background: #8ef6ff;
+  color: #08111f;
+}
+
+.wild-map {
+  position: relative;
+  min-height: 360px;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: crosshair;
+  background:
+    linear-gradient(rgba(15,28,46,0.35), rgba(15,28,46,0.65)),
+    radial-gradient(circle at 30% 30%, #6FA3A9, transparent 28%),
+    radial-gradient(circle at 70% 60%, #1E3A5F, transparent 34%),
+    #0F1C2E;
+  border: 1px solid rgba(255,255,255,0.16);
+}
+
+.map-empty-text {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: rgba(255,255,255,0.65);
+  pointer-events: none;
+}
+
+.map-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 2px solid white;
+  background: #e8c25c;
+  color: #1f1805;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+  cursor: pointer;
+}
+
+.map-pin::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  width: 12px;
+  height: 12px;
+  background: inherit;
+  transform: rotate(45deg);
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+}
+
+@media (max-width: 768px) {
+  .map-header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  #map-selected-animal {
+    white-space: normal;
+  }
+
+  .wild-map {
+    min-height: 300px;
   }
 }
