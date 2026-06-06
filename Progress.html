@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wildex</title>
+<link rel="stylesheet" href="CSS/style.css">
+<link rel="stylesheet" href="CSS/pokedex.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat&family=Caveat&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<header class="header">
+
+  <div class="logo-section">
+    <img class="logo" src="Images/Logot.png" alt="WILDEX logo">
+    <span class="title">WildDex</span>
+  </div>
+
+ <nav class="navigation">
+    <a href="index.html">Home</a>
+    <a href="dexsiden.html">Dex</a>
+    <a href="learnmore.html">Learn More</a>
+    <a href="Progress.html">Progress</a>
+  </nav>
+
+ </header>
+
+
+
+<main class="progress-page">
+
+  <section class="progress-hero">
+    <p class="dex-eyebrow">WildDex Collection</p>
+    <h1>Your wildlife progress</h1>
+    <p>
+      Track your discoveries, unlock rare animals, and complete your regional wildlife collection.
+    </p>
+    
+    <section class="collector-profile-card pixel-border">
+  <p class="eyebrow">Collector Profile</p>
+  <h2 id="collectorDisplayName">Unknown Collector</h2>
+  <p id="collectorDisplayRegion">Starting Region: Unknown</p>
+</section>
+  </section>
+
+
+
+  <section class="progress-dashboard">
+    <div class="progress-main-card">
+      <span class="dashboard-label">Total collection</span>
+      <div id="tracker">Du har set 0 ud af 0 dyr (0%)</div>
+
+      <div class="progress-bar">
+        <div id="progress-fill"></div>
+      </div>
+    </div>
+
+    <div class="rare-progress-box">
+      <span class="dashboard-label">Rare discoveries</span>
+      <h2>Rare animals</h2>
+      <p id="rare-progress-text">0 / 0 rare animals discovered</p>
+    </div>
+  </section>
+
+ <section class="achievements-section">
+  <div class="section-heading">
+    <p class="eyebrow">Achievements</p>
+    <h2>Badges</h2>
+  </div>
+
+  <div id="badges-container" class="badges-grid"></div>
+
+  <div class="badges-toggle-wrapper">
+    <button id="badgesToggleBtn" onclick="toggleBadgesView()">
+      View All Badges
+    </button>
+  </div>
+</section>
+ 
+  <section class="save-file-card">
+  <p class="eyebrow">Save File</p>
+  <h2>WildDex Save Data</h2>
+
+  <div id="save-file-stats" class="save-file-stats">
+    <!-- JS fills this -->
+  </div>
+
+  <div class="save-file-actions">
+    <button type="button" data-action="reset-seen">
+      Reset caught
+    </button>
+
+    <button type="button" data-action="reset-pins">
+      Reset map pins
+    </button>
+
+    <button type="button" data-action="reset-badges">
+      Reset badges
+    </button>
+
+    <button type="button" data-action="reset-all">
+      Reset all save
+    </button>
+    
+    <button class="reset-btn" onclick="resetCollectorProfile()">
+  Reset Collector Profile
+</button>
+  </div>
+
+  <p id="save-file-feedback" class="save-file-feedback"></p>
+</section>
+
+  <section class="collection-section">
+    <div class="section-heading">
+      <p class="dex-eyebrow">Collection</p>
+      <h2>Regional Pokédex</h2>
+    </div>
+
+    <div id="regional-pokedex-container"></div>
+  </section>
+
+</main>
+
+
+
+<h1>Find animals to unlock them!</h1>
+  <main>
+    <section id="pokedex-container" class="pokedex-grid"></section>
+  </main>
+
+	
+<script src="JS/animals.js"></script>
+<script src="JS/function.js"></script>
+</body>
+</html>
